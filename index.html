@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>发送心意</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: "Helvetica Neue", sans-serif;
+      text-align: center;
+      padding: 60px 20px;
+      background-color: #fffbe6;
+    }
+    h2 {
+      font-size: 24px;
+      color: #333;
+    }
+    p {
+      font-size: 18px;
+      margin-top: 10px;
+      color: #666;
+    }
+    button {
+      margin-top: 30px;
+      padding: 14px 28px;
+      font-size: 18px;
+      background-color: #ff9a9e;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    button:hover {
+      background-color: #ff6b81;
+    }
+  </style>
+</head>
+<body>
+  <h2>👏 文本已复制！</h2>
+  <p>现在返回微信聊天粘贴发送给TA吧~</p>
+  <button onclick="copyAndBack()">👉 返回微信</button>
+
+  <script>
+    function getQueryParam(name) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(name);
+    }
+
+    const text = getQueryParam('text') || '我喜欢你';
+    navigator.clipboard.writeText(text).then(() => {
+      console.log('文本已复制：', text);
+    }).catch((err) => {
+      alert("自动复制失败，请长按手动复制：" + text);
+    });
+
+    function copyAndBack() {
+      location.href = 'weixin://';
+    }
+  </script>
+</body>
+</html>
